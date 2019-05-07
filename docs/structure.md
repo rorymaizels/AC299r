@@ -1,6 +1,8 @@
+# Model Structure
+
 This is where I consider the structure of the model.
 
-# Contents
+## Contents
 
 - [Abstract](index.md)
 - [Project Motivation](motivation.md)

@@ -4,7 +4,7 @@ Being able to accurately predict how different mutations will affect a biomolecu
 
 ![](markslab.jpg)
 
-# Contents
+## Contents
 
 - [Abstract](index.md)
 - [Project Motivation](motivation.md)

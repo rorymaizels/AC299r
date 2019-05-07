@@ -1,13 +1,4 @@
-# Contents
-
-- [Abstract](index.md)
-- [Project Motivation](motivation.md)
-- [Biological & Theoretical Background](background.md)
-- [Model Structure](structure.md)
-- First Steps: Pyro
-- Model Reconstruction
-- Performance Comparison
-- [Conclusions](conclusions.md)
+# Project Motivation
 
 [DeepSequence](https://github.com/debbiemarkslab/DeepSequence) is a deep, generative model designed to capture the latent structure of biomolecule sequence families and exploit this structure for mutation effect prediction (for more details on the theoretical background of this idea see the [background page](background.md)). It is a very large model with multiple different regularization and architectural features for improved performance - and has biologically motivated priors built into the model (for a full explanation of the model and code structure, see the [model structure page](structure.md)) - in their entirety, the Python scripts required to build, train and test the DeepSequence model consist of over two thousand lines of code. Many aspects of the model, such as the architecture, optimisation and loss functions, are hard coded in standard Python code, using the machine learning library *Theano* to provide GPU capabilities.
 
@@ -24,7 +15,16 @@ Reimplementing this model also presented considerable personal value. It offered
 - Bayesian variational autoencoders and stochastic variational inference.
 - Building large-scale, custom implemented machine learning models with biologically motivated priors.
 
+## Contents
 
+- [Abstract](index.md)
+- [Project Motivation](motivation.md)
+- [Biological & Theoretical Background](background.md)
+- [Model Structure](structure.md)
+- First Steps: Pyro
+- Model Reconstruction
+- Performance Comparison
+- [Conclusions](conclusions.md)
 
 
 

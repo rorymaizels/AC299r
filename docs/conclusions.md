@@ -1,6 +1,8 @@
+# Conclusions
+
 This is where I discuss the problem as a whole, including challenges, performance and future work.
 
-# Contents
+## Contents
 
 - [Abstract](index.md)
 - [Project Motivation](motivation.md)

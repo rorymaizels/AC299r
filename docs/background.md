@@ -1,6 +1,8 @@
+# Biological & Theoretical Background
+
 This is where I discuss the biological background of the problem.
 
-# Contents
+## Contents
 
 - [Abstract](index.md)
 - [Project Motivation](motivation.md)
