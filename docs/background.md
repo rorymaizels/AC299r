@@ -4,7 +4,7 @@ This is where I discuss the biological background of the problem.
 
 - [Abstract](index.md)
 - [Project Motivation](motivation.md)
-- [Biological Background](motivation.md)
+- [Biological & Theoretical Background](background.md)
 - [Model Structure](structure.md)
 - First Steps: Pyro
 - Model Reconstruction
