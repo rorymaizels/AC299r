@@ -8,9 +8,9 @@ Being able to accurately predict how different mutations will affect a biomolecu
 
 - [Abstract](index.md)
 - [Project Motivation](motivation.md)
-- Biological Background
-- Model Structure
+- [Biological Background](motivation.md)
+- [Model Structure](structure.md)
 - First Steps: Pyro
 - Model Reconstruction
 - Performance Comparison
-- Conclusions  
+- [Conclusions](conclusions.md)
