@@ -1,6 +1,6 @@
-# Conclusions
+# Usage
 
-This is where I discuss the problem as a whole, including challenges, performance and future work.
+This is where I describe how to use the software.
 
 ## Contents
 

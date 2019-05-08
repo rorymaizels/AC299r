@@ -21,6 +21,7 @@ Reimplementing this model also presented considerable personal value. It offered
 - [Project Motivation](motivation.md)
 - [Biological & Theoretical Background](background.md)
 - [Model Structure](structure.md)
+- [Usage](usage.md)
 - First Steps: Pyro
 - Model Reconstruction
 - Performance Comparison
