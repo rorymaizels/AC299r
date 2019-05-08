@@ -12,13 +12,17 @@ Instead, numerous computational models have been developed to tackle this proble
 
 This can also be applied to mutation effect prediction. The majority of previous models overcome the vast combinatorial complexity of sequence interactions by considering residues independently or only in the context of pairwise interactions. In the years preceding this project, the Marks lab took a different approach; replacing the explicit modelling of interactions with unique free parameters with implicitly capturing these interactions with latent variables; more specifically, capturing the problem's complexity with approximate inference using a bayesian deep latent-variable model, which is discussed below.
 
+* * * 
+
 ## Statistical Model Overview
 
 ### Summary
 
 The model constructed, in its full form, is a Bayesian Variational Autoencoder (B-VAE) that models both the latent dimension (the encoder's output) and the decoder's parameters as variational parameters sampled from a gaussian distribution. Augmenting this variational approximation architecture, the final layer of the decoder is subject to a width-one convolution, a structured sparsity prior, and a final global temperature parameter. The non-Bayesian, standard VAE version of the model is also subject to dropout and $l2$ regularisation.
 
-The model works by learning a latent variable representation of a biomolecule family's sequence alignments.
+The model works by learning a variational approximation of a sequence family's latent variable distribution, $z$ given $x$. From this approximation, it can generate an estimate of the conditional distribution of $x$ given $z$. By learning both, the model can use an ELBO approximation of $p(x|\theta)$, defined as the probability of x given the parameters, $\theta$ of x's generative process from $z$. One can define $p(x|\theta)$ as a heuristic for evaluating the probability of observing a sequence given the family's generative process parameters, $\theta$ - and as such, one can take the log-ratio of such probabilities between a mutant sequence and wild type sequence as a heuristic for the fitness of that mutant sequence.
+
+
 
 ### Detail
 
@@ -67,23 +71,7 @@ Where $x_i$ is the $i$th element of sequence $x$ of length $L$, and $f(z)$ repre
 
 
 
- Probabilistic latent-variable models reveal
-structure in data by positing a partially unobserved generative process that created
-the data and then conducting inference to learn the parameters of the generative
-process. We focus on models in which an unobserved set of factors z are drawn
-from an independent distribution and each data point arises according to a
-conditional distribution p(x|z,θ) that is parameterized by θ. This process can be
-written as
-z I ∼ N(0, ) D
-x x ∼ | p( , z θ)
-Principal component analysis (PCA) has been a foundational model for the
-analysis of genetic variation and can be realized in this probabilistic framework as
-the zero-noise limit of probabilistic PCA43,84. With linear conditional dependencies
-p(x|z,θ), PCA can model only additive interactions between the latent factors z.
-This limitation could in principle be remedied through the use of a conditional
-model p(x|z,θ) with nonlinear dependencies on z.
-Here we consider a conditional model for sequences p(x|z,θ) that differs
-from PCA in two ways. First, the conditional distribution of the data p(x|z,θ) 
+
 
 
 
