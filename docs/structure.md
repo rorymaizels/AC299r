@@ -21,6 +21,8 @@ The biomolecule sequences found in databases have biases due to human sampling (
 
 As will be discussed below, loading of prepared data sets and performance of this re-weighting scheme is done by the data helper class.
 
+* * * 
+
 ## Code Structure
 
 ### pt_helper.py
@@ -40,6 +42,8 @@ Generates a basic job string specifying the key parameters of the model - used d
 #### gen_job_string
 
 Generates a detailed job string specifying model parameters, used for output and model file names.
+
+----
 
 ### pt_model.py
 
@@ -122,6 +126,8 @@ Class that constructs the full bayesian VAE model.
 `recognize` takes in a particular `x` and returns the mu and log-sigma of the latent variable outputted by the model's encoder.
 
 `get_pattern_activations` takes in a particular `x` and returns the output of the decoder's final layer from that x.
+
+----
  
 ### pt_train.py
 
