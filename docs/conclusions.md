@@ -1,14 +1,14 @@
 ## Contents
 
-- [Abstract](index.md)
-- [Project Motivation](motivation.md)
+- [Abstract](index.html)
+- [Project Motivation](motivation.html)
 - [Biological & Theoretical Background](background.html)
-- [Model Structure](structure.md)
-- [Usage](usage.md)
+- [Model Structure](structure.html)
+- [Usage](usage.html)
 - [First Steps: Pyro](pyro.html)
 - [Model Reconstruction](model.html)
 - [Performance Comparison](performance.html)
-- [Conclusions](conclusions.md)
+- [Conclusions](conclusions.html)
 
 # Conclusions
 
