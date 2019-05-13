@@ -2,7 +2,7 @@
 
 - [Abstract](index.md)
 - [Project Motivation](motivation.md)
-- [Biological & Theoretical Background](background.html)
+- [Biological & Theoretical Background](background.md)
 - [Model Structure](structure.md)
 - [Usage](usage.md)
 - [First Steps: Pyro](pyro.html)
