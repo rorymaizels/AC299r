@@ -59,17 +59,13 @@ Function used by all model classes to set correct torch tensor type with respect
 
 sub-class used to define the encoder model for moth SVI and MLE forms of the VAE model. Recieves arguments from full VAE class specifying parameters. 
 
-In `__init__` the encoder architecture is specified, with option for convolving the input layer, non-linear functions are set up and the weights of the layers are initialised in accordance with the original model (weights are glorot-normal initialised, biases are set to 0.1 apart from the output log-sigma bias, which is set to -5). 
-
-`forward()` defines the forward pass, accepting data batch x and passing the data through the architecture to return `z_mu` and `z_logsig`.
+In `__init__` the encoder architecture is specified, with option for convolving the input layer, non-linear functions are set up and the weights of the layers are initialised in accordance with the original model (weights are glorot-normal initialised, biases are set to 0.1 apart from the output log-sigma bias, which is set to -5). `forward()` defines the forward pass, accepting data batch x and passing the data through the architecture to return `z_mu` and `z_logsig`.
 
 #### DecoderMLE Class
 
 sub-class for decoder where parameters are not subject to variational approximation (parameters determined through maximum likelihood estimation rather than stochastic variational inference). 
 
-`__init__` creates architecture, initialises weights as per original model, sets up non-linear functions and accepts arguments passed from the full VAE model. In setting up the architecture, if so specified, will create sparsity parameters, a final temperature parameter, a convolutional layer for the output and a dropout layer. 
-
-`forward()` accepts two arguments; the original input `x` which is used in calculations for the ELBO, and `z`, which is passed through the decoder architecture. If sparsity is used, `forward` takes sparsity parameters and tiles them to correct dimension. If passed sparsity argument is `'logit'` then the sigmoid of these parameters is applied to the final weights, otherwise the exponential is applied. If temperature or convolution are used, they are also applied here. Once the final output of the decoder is created, log(P(x|z)) is calculated. The forward pass returns the reconstruction of `x`, this log-probability value and the values of the final output.
+`__init__` creates architecture, initialises weights as per original model, sets up non-linear functions and accepts arguments passed from the full VAE model. In setting up the architecture, if so specified, will create sparsity parameters, a final temperature parameter, a convolutional layer for the output and a dropout layer. `forward()` accepts two arguments; the original input `x` which is used in calculations for the ELBO, and `z`, which is passed through the decoder architecture. If sparsity is used, `forward` takes sparsity parameters and tiles them to correct dimension. If passed sparsity argument is `'logit'` then the sigmoid of these parameters is applied to the final weights, otherwise the exponential is applied. If temperature or convolution are used, they are also applied here. Once the final output of the decoder is created, log(P(x|z)) is calculated. The forward pass returns the reconstruction of `x`, this log-probability value and the values of the final output.
 
 #### DecoderSVI Class
 
@@ -143,21 +139,23 @@ Loads weights from a given path to a given model.
 
 #### train
 
-Takes in an instance of the DataHelper and VAE model, along with training parameters. Sets...TBC
+Takes in an instance of the DataHelper and VAE model, along with training parameters. Sets up saving file path, embeddings (if the use of embeddings is chosen in the DataHelper) and sets up the Adam solver with the model's parameters and a learning rate of 0.001). Generates training loop, whereby for each loop a mini-batch is selected (with calculated sequence weights used to select the weights to recalibrate against biases) and then, if required, the model and data are transferred to GPU with cuda. The Adam solver's gradients are reset (as is required with Torch, due to accumulating gradients), the forward pass is performed, loss is found, backpropagation is performed and the solver updates parameters. Updated values are saved, printed or stored as specified and this process repeats for each epoch.
 
+### run_ptmle.py / run_ptsvi.py
 
+These are the scripts that should be called to run the model. In each, the above modules are imported; data, model and training parameters are specified in dictionaries, the DataHelper and relevant model are constructed. Parameters are printed to output, and then the model is trained - at the end, the model is saved. Due to the different model architectures, different scripts are used for the SVI and MLE versions of the model.
 
-- generalised model structure
-	- data helper
-	- model file
-	- training file
-	- run file
+### SVI_mutation_analysis.py / MLE_mutation_analysis
 
+Example scripts for performing mutation effect prediction - largely based off code from the original project. Model is constructed and loaded with saved parameters, and a function is defined and called to calculate the Spearman R value for comparison of the model's predictions with experimental data. Greater agreement between the model's predictions and the experimental data will lead to larger values of Spearman R. Although the code for this analysis was largely written before this project, the code will be supplied for reference in [model performance](performance.html)
 
+## Key Changes
 
+Here, we briefly highlight some of the main differences and developments that are present in the new model.
 
-- key differences
-	- date helper unchanged
-	- model more modular, higher-level functions used
-	- used pre-defined adam
-
+- Increased Modularity. Through the use of torch's nn.Module class, the encoder, decoder and VAE elements of the models have been defined as separate classes. This makes the model cleaner, more readable and more adjustable - for example, both the SVI and MLE versions of the model inherit the Encoder class, meaning that adjustments are instantly shared between models and do not need to be repeated.
+- Increased concision. Through use of torch's machine learning functions and modules, the code is more concise - the full model takes up about half the number of lines of code. Again, this improves readability and manageability of the model which makes usage easier for new users
+- Less hard-coding. The original model was almost entirely defined in standard Python code, depending on Theano largely just for GPU compatibility. The new model takes advantage of PyTorch's many built in functionalities to define the model. Not only does this make the model more interpretable, but it makes hyper-parameter exploration and adjustment significantly easier. For example, to change the original model's optimizer from Adam to Adadelta, for example, would require adjustments to a minimum of 25 lines of code - now, this can be done by changing only one line. 
+- Increased documentation. It is important for the development of this model that new members of the lab can easily learn how it is constructed and how it is used. To this end, the degree of commenting and documentation in the model has been increased so that throughout the model it is more clear what is being done.
+- More Pythonic structure. Without needing to use compiled code or symbolic tensors, model functions can be defined by standard Python functions rather than with the use of the compiled function call `theano.function()`.
+- A data-loading bug that was present in the original DataHelper script was fixed to ensure proper functionality. This bug prevented the loading of pre-prepared datasets.
