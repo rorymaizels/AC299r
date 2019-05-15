@@ -12273,7 +12273,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It appears that the PyTorch model is on average quicker, but this is only an anecdotal observation and is not consistent across all proteins tested. Due to the length of time to it takes to run a model (the quoted times here do not include the time it takes to resource the GPU compute-time, which can also take hours), it was not possible to run these models multiple times to get a strong idea of average performance time - as such, all that one could say is that it appears that the two models run in effectively equivalent times.</p>
+<p>It appears that the PyTorch model is on average quicker, but this is only an anecdotal observation and is not consistent across all proteins tested. Due to the length of time to it takes to run a model (the quoted times here do not include the time it takes to resource the GPU compute-time, which can also take hours), it was not possible to run these models multiple times to get a strong idea of average performance time, and runtime on shared-cluster GPUs can be affected by various different external factors - as such, all that one could say is that it appears that the two models run in effectively equivalent times.</p>
 <p>Improving the runtime of the model was not a primary focus of this reconstruction, although it will certainly be an important goal in the future. The new model is well primed for speed focussed development - with PyTorch there are multiple features available that can be easily implemented to improve model speed. For example, Data Parallelism can be implemented through torch's <code>torch.nn.DataParallel</code> module. With PyTorch, one can construct a custom DataLoader class to pass data to the model in a method that is more GPU-compatible than is currently implemented (the generic dataloader cannot be used as sequences must be selected with weighted probabilities). As the development of PyTorch continues, the possibilities for greater parallelism and speedup will only increase</p>
 
 </div>
@@ -12381,7 +12381,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here, we can see surprisingly stark differences in performance between the two model types. All forms of the MLE version of the model performs considerably better in the new model, however the SVI version in PyTorch underperforms, and the best performance of the Theano model is better than any PyTorch model. PyTorch models could only be run once each, so the degree to which stochasticity affects these results cannot be determined, however the performances of the models are quite strongly different and there the performances within MLE or SVI models appear to be correlated.</p>
+<p>Here, we can see surprisingly stark differences in performance between the two model types. All forms of the MLE version of the model performs considerably better in the new model, however the SVI version in PyTorch underperforms, and the best performance of the Theano model is better than any PyTorch model. PyTorch models could only be run once each, so the degree to which stochasticity affects these results cannot be determined, however the performances of the models are quite strongly different.</p>
 
 </div>
 </div>
