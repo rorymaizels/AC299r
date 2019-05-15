@@ -34,7 +34,7 @@ Whilst the work on this PyTorch implementation of DeepSequence is not finished, 
 
 ## Acknowledgements
 
-I'd like to thank Debbie Marks and the Marks lab for helping me throughout this project, particularly Mafalda, Aaron and Jonathan for their all their advice.
+I'd like to thank Debbie Marks and the Marks lab for helping me throughout this project, particularly Mafalda, Aaron and Jonathan for all their advice and help.
 
 ```
         ____                 _____
