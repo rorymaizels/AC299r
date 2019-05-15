@@ -32,6 +32,10 @@ The modular nature of the new model facilitates easy hyper-parameter tuning and 
  
 Whilst the work on this PyTorch implementation of DeepSequence is not finished, I have already gained a huge amount from this experience. Apart from the obvious initial exposures to stochastic variational inference, latent-variable models, Theano and PyTorch programming, the process of constructing, testing, and debugging a large and sophisticated computational model has provided a challenging and rewarding experience.
 
+## Acknowledgements
+
+I'd like to thank Debbie Marks and the Marks lab for helping me throughout this project, particularly Mafalda, Aaron and Jonathan for their all their advice.
+
 ```
         ____                 _____
        / __ \___  ___  ____ / ___/___  ____ ___  _____  ____  ________
